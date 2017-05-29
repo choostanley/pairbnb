@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   root 'users#index'
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
