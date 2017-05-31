@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'carrierwave', '~> 1.0'
+gem 'faker'
+gem 'kaminari' # pagination gem
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'

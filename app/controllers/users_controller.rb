@@ -5,12 +5,12 @@ class UsersController < Clearance::UsersController
 	end
 
 	def create
-		byebug
 		@user = User.new(user_params)
 		if @user.save
 			sign_in @user
 			redirect_back_or url_after_create
 		else
+			# @user.save
 			respond_to do |format|
 				format.html {render template: "user/new"}
 				format.js 
@@ -23,6 +23,10 @@ class UsersController < Clearance::UsersController
 		render 'homepage/index'
 	end	
 
+	def edit
+		@user = current_user
+	end
+	
 	private
 	def user_params
 		params.require(:user).permit(:name, :age, :email, :password)
