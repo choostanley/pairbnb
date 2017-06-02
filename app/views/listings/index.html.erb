@@ -17,6 +17,7 @@
   </thead>
 
   <tbody>
+  
     <% @listings.each do |listing| %>
       <tr>
         <td><%= listing.user.name %></td>
@@ -27,7 +28,7 @@
         <td><%= listing.address %></td>
         <% if listing.verified? %>
         <td><i class="fa fa-check" aria-hidden="true"></i></td>
-        <%end%>
+        <% end %>
         <td><%= link_to 'Show', listing %></td>
 
         <% if signed_in? -%>

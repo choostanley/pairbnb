@@ -1,5 +1,10 @@
+# require 'carrierwave/orm/activerecord'
+
+
 class User < ApplicationRecord
   include Clearance::User
+
+  mount_uploader :avatar, AvatarUploader
 
   enum access_level: [:customer, :moderator, :superadmin]
 

@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  resources :listings
+  resources :listings do
+    resources :photos, only: [:create, :destroy]
+  end
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :users, controller: "users", only: [:create] do
+  resources :users, controller: "users", only: [:create, :update, :edit, :show ] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
+
+
 
   root 'listings#index'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"

@@ -41,7 +41,9 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
+    
     respond_to do |format|
+      store_photos
       if @listing.update(listing_params)
         format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
@@ -71,5 +73,10 @@ class ListingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
       params.require(:listing).permit( :name, :description, :price, :num_of_bed, :address)
+    end
+
+    def store_photos
+      photos = params[:listing][:photos]
+      photos.each{|photo| @listing.photos.create(image: photo)} if photos
     end
 end
