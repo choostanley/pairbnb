@@ -1,1 +1,1 @@
-$('#clearance'). after('<p>Please fill in all the space provided.</p>');
+$('#clearance'). after('<p><%= @user.errors.full_messages %></p>');

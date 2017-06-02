@@ -5,6 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'autoprefixer-rails'
+gem 'bootstrap-select-rails'
+
+gem 'carrierwave', '~> 1.0'
+gem 'cloudinary'
+gem 'mini_magick'
+gem 'faker'
+gem 'kaminari' # pagination gem
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'

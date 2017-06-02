@@ -17,3 +17,15 @@
   <%= form.label :age %>
   <%= form.text_field :age %>
 </div>
+
+<div class="text-field">
+  <%= form.label :avatar %>
+  <%= form.file_field :avatar %>
+</div>
+
+<p>
+    <label>
+      <%= form.check_box :remove_avatar %>
+      Remove avatar
+    </label>
+  </p>
