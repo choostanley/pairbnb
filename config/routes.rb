@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :listings do
-    resources :photos, only: [:create, :destroy]
-  end
+  # below 3 lines did for deleting photo object, follow up in photo controller
+  
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -19,7 +18,12 @@ Rails.application.routes.draw do
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
-  resources :listings, controller: "listings"
+  # resources :listings, controller: "listings"
+  resources :listings do
+    resources :photos, only: [:create, :destroy]
+    resources :bookings, only: [:create]
+  end
+  resources :bookings, only: [:destroy]
   # resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   # resource :session, controller: "clearance/sessions", only: [:create]
 
