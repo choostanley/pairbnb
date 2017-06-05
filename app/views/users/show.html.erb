@@ -1,8 +1,33 @@
 <p>Ma hai edited</p>
 
-<%= image_tag @user.avatar.url, class: 'circle' %>
+
+<%= image_tag @user.avatar.url, class: 'circle thumb' %>
 <br>
 <h1><%= @user.name %></h1>
 <br>
 <%= @user.email %>
+
+<table>
+	<col width="200px" />
+    <col width="200px" />
+    <col width="200px" />
+<tr>
+	<th >Listing Title</th>
+	<th>Start date</th>
+	<th>End date</th>
+	<th>Guests</th>
+	<th>Price</th>
+	<td>Action</td>
+</tr>
+	<% @bookings.each do |x| %>
+	<tr>
+		<td ><%= link_to x.listing.name, x.listing %></td>
+		<td><%=x.start_date%></td>
+		<td><%=x.end_date%></td>
+		<td><%=x.num_of_guest%></td>
+		<td><%=x.total_price %></td>
+		<td><%= link_to "Cancel booking", x, method: :delete %></td>
+	</tr>
+	<%end%>
+</table>
 
