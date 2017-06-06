@@ -18,6 +18,7 @@
 	<th>Guests</th>
 	<th>Price</th>
 	<td>Action</td>
+	<td>Pay</td>
 </tr>
 	<% @bookings.each do |x| %>
 	<tr>
@@ -27,7 +28,10 @@
 		<td><%=x.num_of_guest%></td>
 		<td><%=x.total_price %></td>
 		<td><%= link_to "Cancel booking", x, method: :delete %></td>
+		<td><%= link_to "Payment page", new_booking_braintree_path(x) %></td>
 	</tr>
 	<%end%>
 </table>
+
+<%= link_to "Make Payment", braintree_new_path %>
 

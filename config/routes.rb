@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'braintree/new'
+
+
   # below 3 lines did for deleting photo object, follow up in photo controller
   
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  post 'braintree/checkout'
   root 'listings#index'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
@@ -23,7 +26,9 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :destroy]
     resources :bookings, only: [:create]
   end
-  resources :bookings, only: [:destroy]
+  resources :bookings, only: [:destroy] do
+    resources :braintree, only: [:new, :create]
+  end
   # resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   # resource :session, controller: "clearance/sessions", only: [:create]
 
