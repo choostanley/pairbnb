@@ -5,13 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby "2.3.1"
+
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 gem 'bootstrap-select-rails'
 
 # gem for server setup automation
-gem 'uniform' 
-gem 'rails_12factor'
+
 gem 'sidekiq'
 gem 'letter_opener', :group => :development
 gem 'braintree'
@@ -67,6 +68,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  # gem 'uniform' 
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
