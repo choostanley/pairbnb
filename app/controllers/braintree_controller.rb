@@ -1,7 +1,8 @@
 class BraintreeController < ApplicationController
   def new
   	@client_token = Braintree::ClientToken.generate
-  	@booking = Booking.find(params[:booking_id])   
+  	@booking = Booking.find(params[:booking_id])
+    @price = @booking.total_price   
   end
 
   def create #actually is checkout, but checkout not in restful route

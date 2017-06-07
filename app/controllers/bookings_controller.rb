@@ -3,8 +3,11 @@ class BookingsController < ApplicationController
 		@listing = Listing.find(params[:listing_id])
 		@booking = current_user.bookings.new(booking_params)
 		@booking.listing = @listing
+		@host = User.find(@listing.user_id)
 		if @booking.save
-			redirect_to @listing
+			# UserMailer.booking_email(current_user, @host, @booking.id).deliver_now
+			BookingJob.perform_later(current_user, @host, @booking.id)
+			redirect_to @listing, notice: "Your booking is successful"
 		else
 			@errors = @booking.errors.full_messages
 			render 'listings/show'
